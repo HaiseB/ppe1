@@ -23,7 +23,7 @@ render('header',['title' => $event->getName()]);
 
 <?php require '../views/footer.php'; ?>
 
-ancien affichage de reussite 
+ancien affichage de reussite
 
 <?php if (isset($_GET['success'])): ?>
 <div class="container">
