@@ -9,6 +9,8 @@
 <div class="jumbotron container">
     <h1>En construction / À venir :</h1>
     <ul>
+        <i class="fas fa-arrow-alt-circle-up"></i>
+        <i class="fas fa-arrow-alt-circle-down"></i>
         <li>Ma journée / affichage journalié</li>
         <li>Tri des salles selon critères</li>
         <li>Test si la procédure stockée est bien passée</li>

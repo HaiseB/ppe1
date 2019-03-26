@@ -6,7 +6,6 @@ require 'model/functions.php';
 ?>
 
 <?php
-
     if(!isset($_GET['action']))
         $_GET['action']="home";
 
@@ -18,6 +17,14 @@ require 'model/functions.php';
 
         case "login":
             pages('space/login');
+        break;
+
+        case "forget":
+            pages('space/forget');
+        break;
+
+        case "404":
+            e404();
         break;
 
         case "logout":
@@ -57,22 +64,29 @@ require 'model/functions.php';
         break;
 
         case "league":
-            pages('league/league');
+            logged_only();
+            require 'model/league/Leagues.php';
+            $leagues=getLeagues();
+            render('header');
+            include 'view/league/league.php';
+            render('footer');
         break;
 
         case "editLeague":
+            admin_only();
             pages('league/editLeague');
         break;
 
         case "addLeague":
+            admin_only();
             pages('league/addLeague');
         break;
 
         case "deleteLeague":
-            include 'controller/league.php';
+            admin_only();
+            include 'model/league/leagues.php';
+            deleteLeague($_GET['id']);
         break;
     }
-    
-
 
 ?>

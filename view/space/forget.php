@@ -1,11 +1,9 @@
 <?php
-require '../src/bootstrap.php';
 if (!empty($_POST) && !empty($_POST['email'])){
     $pdo=get_pdo();
     $req = $pdo->prepare('SELECT * FROM users WHERE email=? AND confirmed_at IS NOT NULL');
     $req->execute([$_POST['email']]);
     $user = $req->fetch();
-    session_start();
     if($user){
         $reset_token = str_random(60);
         $pdo->prepare('UPDATE users SET reset_token = ?, reset_at = NOW() WHERE id = ?')->execute([$reset_token, $user['id']]);
@@ -18,8 +16,6 @@ if (!empty($_POST) && !empty($_POST['email'])){
         $_SESSION['flash']['danger'] = "Aucun compte ne correspond à cet email";
     }
 }
-
-render('header');
 ?>
 
 <div class="jumbotron">
@@ -46,5 +42,3 @@ render('header');
         </div>
     </form>
 </div>
-
-<?php render('footer'); ?>

@@ -13,7 +13,7 @@ class Events{
     }
 
     /**
-     * Recupère les évènements commencant entre 2 dates
+     * Recupère tout les évènements commencant entre 2 dates si l'utilisateur est admin sinon, elle ne recupère que ceux de la ligue
      *
      * @param \Datetime $start
      * @param \Datetime $end
@@ -27,6 +27,14 @@ class Events{
             $statement = $this->pdo->prepare("SELECT * FROM events WHERE start BETWEEN '{$start->format('Y-m-d 00:00:00')}' AND '{$end->format('Y-m-d 23:59:59')}' AND id_league = ? ORDER BY start ASC");
             $statement->execute([$_SESSION['auth']['id_league']]);
         }
+        $result = $statement->fetchAll();
+        return $result;
+    }
+
+
+    public function getEventsToday ($start,$end): array{
+        $statement = $this->pdo->prepare("SELECT * FROM events WHERE start BETWEEN '{$start}' AND '{$end}' AND id_league = ? ORDER BY start ASC");
+        $statement->execute([$_SESSION['auth']['id_league']]);
         $result = $statement->fetchAll();
         return $result;
     }

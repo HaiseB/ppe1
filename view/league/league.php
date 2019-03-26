@@ -1,10 +1,3 @@
-<?php
-require 'model/league/Leagues.php';
-logged_only();
-$leagues=getLeagues();
-
-?>
-
 <div class="d-flex flex-row align-items-center justify-content-between mx-sm-3">
     <h1>Ligues de sport</h1>
 </div>

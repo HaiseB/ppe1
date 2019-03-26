@@ -9,8 +9,6 @@ try{
     $event = $events->find($_GET['id'] ?? null);
 }catch (\Exception $e){
     e404();
-}catch (\Error $e){
-    e404();
 }
 
 $data=[
@@ -22,6 +20,8 @@ $data=[
     'id_league' => $event->getId_league(),
     'id_classroom' => $event->getId_classroom(),
 ];
+
+dd($data);
 
 $req = $pdo->prepare("SELECT * FROM classrooms WHERE id = ?");
 $req->execute([$data['id_classroom']]);

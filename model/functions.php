@@ -6,7 +6,8 @@
  * @return void
  */
 function e404(){
-    require 'view/404.php';
+    http_response_code(404);
+    pages('404');
     exit();
 }
 
@@ -73,7 +74,7 @@ function str_random($length){
 }
 
 /**
- * Sécurisation d'une page
+ * Sécurisation d'une page pour ne donner l'accès qu'a un utilisateur connecté
  *
  * @return void
  */
@@ -82,8 +83,22 @@ function logged_only(){
         session_start();
     }
     if(!isset($_SESSION['auth'])){
-        header('location: login.php');
+        header('location: index.php?action=login');
         $_SESSION['flash']['danger'] = "Vous devez être connecté pour acceder à cette page";
+        exit();
+    }
+}
+
+/**
+ * Sécurisation d'une page pour ne donner l'accès qu'a un administrateur
+ *
+ * @return void
+ */
+function admin_only(){
+    logged_only();
+    if($_SESSION['auth']['id_league'] !=0){
+        header('location: index.php?action=login');
+        $_SESSION['flash']['danger'] = "Vous devez être administrateur pour pouvvoir acceder à cette page";
         exit();
     }
 }
@@ -132,6 +147,19 @@ function is_admin(): bool {
         return true;
     }else{
         return false;
+    }
+}
+
+/**
+ * retourne vrai si l'utilisateur est connecté
+ *
+ * @return boolean
+ */
+function is_logged(): bool {
+    if(!isset($_SESSION['auth'])){
+        return false;
+    }else{
+        return true;
     }
 }
 
