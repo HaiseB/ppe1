@@ -1,0 +1,1 @@
+deleteLeague($_POST['id']);

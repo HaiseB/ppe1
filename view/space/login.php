@@ -1,5 +1,4 @@
 <?php
-require '../src/bootstrap.php';
 reconnect_from_cookie();
 
 if(isset($_SESSION['auth'])){
@@ -20,14 +19,12 @@ if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
             $pdo->prepare('UPDATE users SET remember_token=? WHERE id=?')->execute([$remember_token,$user['id']]);
             setcookie('remember', $user['id'].'=='.$remember_token.sha1($user['id']. 'jaimelasecurite'), time()+ 60*60*24*7);
         }
-        header('location: day.php');
+        header('location: index.php?action=myDay');
         exit();
     }else{
         $_SESSION['flash']['danger'] = "Nom d'utilisateur et/ou mot de passe incorrect";
     }
 }
-
-render('header');
 ?>
 
 <div class="jumbotron container">
@@ -62,5 +59,3 @@ render('header');
         </div>
     </form>
 </div>
-
-<?php render('footer'); ?>

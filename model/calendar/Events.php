@@ -2,7 +2,7 @@
 
 namespace calendar;
 
-require '..\src\calendar\Event.php';
+require 'model\calendar\Event.php';
 
 class Events{
 

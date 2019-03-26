@@ -6,7 +6,7 @@
  * @return void
  */
 function e404(){
-    require '../public/404.php';
+    require 'view/404.php';
     exit();
 }
 
@@ -58,7 +58,7 @@ function h(?string $value): string {
  */
 function render(string $view, $parameters =[]){
     extract($parameters);
-    require "../views/$view.php";
+    require "view/$view.php";
 }
 
 /**
@@ -223,6 +223,13 @@ function isCheckedLocked_at(bool $checkbox): bool{
     } else {
         return true;
     }
+}
+
+function pages($pageName){
+    render('header');
+    render($pageName);
+    render('footer');
+
 }
 
 ?>

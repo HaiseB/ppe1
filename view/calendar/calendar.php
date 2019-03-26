@@ -1,7 +1,6 @@
 <?php
-    require '../src/bootstrap.php';
-    require '../src/calendar/Month.php';
-    require '../src/calendar/Events.php';
+    require 'model/calendar/Month.php';
+    require 'model/calendar/Events.php';
     logged_only();
     $pdo = get_pdo();
     $events = new calendar\Events($pdo);
@@ -12,7 +11,6 @@
     $end = (clone $firstDay)->modify('+'.(6 + 7* ($weeks-1).' days'));
     $events = $events -> getEventsBetweenByDay($firstDay, $end);
     $req = $pdo->prepare("SELECT * FROM classrooms WHERE id = ?");
-    require '../views/header.php';
 ?>
 
 <div class="calendar">
@@ -20,8 +18,8 @@
     <div class="d-flex flex-row align-items-center justify-content-between mx-sm-3">
         <h1><?= $month->toString(); ?></h1>
         <div>
-            <a href="calendar.php?month=<?= $month->previousMonth()->month; ?>&year=<?= $month->previousMonth()->year; ?>" class="btn btn-primary">&lt;</a>
-            <a href="calendar.php?month=<?= $month->nextMonth()->month; ?>&year=<?= $month->nextMonth()->year; ?>" class="btn btn-primary">&gt;</a>
+            <a href="index.php?action=calendar&month=<?= $month->previousMonth()->month; ?>&year=<?= $month->previousMonth()->year; ?>" class="btn btn-primary">&lt;</a>
+            <a href="index.php?action=calendar&month=<?= $month->nextMonth()->month; ?>&year=<?= $month->nextMonth()->year; ?>" class="btn btn-primary">&gt;</a>
         </div>
     </div>
 
@@ -37,11 +35,11 @@
                     <?php if ($i === 0):?>
                         <div class="calendar__weekday"><?= $day; ?></div>
                     <?php endif; ?>
-                    <a class="calendar__day" href="addEvent.php?date=<?= $currentDay->format("Y-m-d"); ?>"><?= $currentDay->format("d"); ?></a>
+                    <a class="calendar__day" href="index.php?action=addEvent&date=<?= $currentDay->format("Y-m-d"); ?>"><?= $currentDay->format("d"); ?></a>
                     <?php foreach ($eventsForDay as $event): ?>
                         <?php $req->execute([$event['id_classroom']]); $classroom = $req->fetch(); ?>
                         <div class="calendar__event">
-                            <?= (new Datetime ($event['start']))->format('H:i') ?> : <a href="editEvent.php?id=<?= $event['id']; ?>">Salle <?= $classroom['name']?><br><?= $event['name']; ?></a>
+                            <?= (new Datetime ($event['start']))->format('H:i') ?> : <a href="index.php?action=editEvent&id=<?= $event['id']; ?>">Salle <?= $classroom['name']?><br><?= $event['name']; ?></a>
                         </div>
                     <?php endforeach; ?>
                 </td>
@@ -50,8 +48,6 @@
         <?php endfor; ?>
     </table>
 
-    <a href="addEvent.php" class="calendar__button">+</a>
+    <a href="index.php?action=addEvent" class="calendar__button">+</a>
 
 </div>
-
-<?php require '../views/footer.php'; ?>

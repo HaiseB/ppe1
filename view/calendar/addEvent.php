@@ -1,7 +1,5 @@
 <?php
-require '../src/bootstrap.php';
-require '../src/calendar/Events.php';
-require '../src/calendar/EventValidator.php';
+require 'model/calendar/Events.php';
 logged_only();
 $pdo = get_pdo();
 
@@ -11,16 +9,9 @@ $data=[
     'end' => $_GET['date'] ?? date('H:i')
 ];
 
-$validator = new app\Validator($data);
-if (!$validator->validate('date', 'date')){
-    $data['date'] = date('Y-m-d');
-}
-
 $errors=[];
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $data = $_POST;
-    //$validator = new calendar\EventValidator();
-    //$errors = $validator->validates($_POST);
     if ($data['start'] >= $data['end']){
         $errors=['date'];
     }
@@ -42,7 +33,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                         $name,
                         $description]);
         if (1 === 1 /* A FAIRE : tester si la requete est passée */){
-            header('Location: calendar.php');
+            header('Location: index.php?action=calendar');
             $_SESSION['flash']['success'] = "L'évènement à bien été créé";
             exit();
         } else {
@@ -52,8 +43,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $_SESSION['flash']['danger'] = "Merci de bien vouloir corriger vos erreurs";
     }
 }
-
-render('header',['title' => 'Créer un évènement']);
 ?>
 
 <div class="jumbotron container">
@@ -66,5 +55,3 @@ render('header',['title' => 'Créer un évènement']);
         </div>
     </form>
 </div>
-
-<?php render('footer'); ?>

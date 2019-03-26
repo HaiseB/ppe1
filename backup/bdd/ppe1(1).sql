@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 10 mars 2019 à 00:46
+-- Généré le :  lun. 18 mars 2019 à 21:19
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `classrooms` (
   `computerized` tinyint(1) NOT NULL,
   `locked_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `classrooms`
@@ -88,12 +88,12 @@ INSERT INTO `classrooms` (`id`, `name`, `number_places`, `computerized`, `locked
 (7, 'Curie', 18, 0, NULL),
 (8, 'Dirac', 18, 0, NULL),
 (9, 'Doppler', 18, 0, NULL),
-(10, 'Darwin', 30, 0, '2019-03-09 07:39:22'),
+(10, 'Darwin', 30, 0, NULL),
 (11, 'Kepler', 18, 1, NULL),
 (12, 'Maxwell', 18, 1, NULL),
 (13, 'Newton', 18, 1, NULL),
 (14, 'Sievert', 18, 1, NULL),
-(15, 'Thomson', 18, 1, NULL);
+(15, 'Thomson', 18, 1, '2019-03-10 21:42:06');
 
 -- --------------------------------------------------------
 
@@ -113,17 +113,18 @@ CREATE TABLE IF NOT EXISTS `events` (
   PRIMARY KEY (`id`),
   KEY `id_league` (`id_league`),
   KEY `id_classroom` (`id_classroom`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `events`
 --
 
 INSERT INTO `events` (`id`, `name`, `description`, `start`, `end`, `id_league`, `id_classroom`) VALUES
-(10, 'yep', NULL, '2019-03-14 09:00:00', '2019-03-14 10:00:00', 1, 2),
-(11, 'booked', '', '2019-03-09 00:00:00', '2019-03-09 23:59:00', 3, 11),
-(17, 'Test', 'oui', '2019-03-10 00:30:00', '2019-03-10 23:30:00', 1, 1),
-(19, '14', '', '2019-03-10 00:00:00', '2019-03-10 23:59:00', 1, 2);
+(10, 'yepp', '454241242', '2019-03-14 09:00:00', '2019-03-14 10:00:00', 1, 2),
+(11, 'booked', '789', '2019-03-09 00:00:00', '2019-03-09 23:59:00', 3, 11),
+(23, 'azazeazeaze', 'Cours philo', '2019-03-11 08:10:00', '2019-03-11 19:00:00', 1, 11),
+(19, '14', 'trouydcukl-', '2019-03-10 00:00:00', '2019-03-10 23:59:00', 1, 2),
+(24, 'Now', 'Test', '2019-03-18 20:18:00', '2019-03-18 20:31:00', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -137,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `leagues` (
   `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `sport` varchar(50) NOT NULL,
   `phone_number` varchar(10) NOT NULL,
-  `locket_at` datetime DEFAULT NULL,
+  `locked_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
@@ -145,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `leagues` (
 -- Déchargement des données de la table `leagues`
 --
 
-INSERT INTO `leagues` (`id`, `name`, `sport`, `phone_number`, `locket_at`) VALUES
+INSERT INTO `leagues` (`id`, `name`, `sport`, `phone_number`, `locked_at`) VALUES
 (0, 'Administrateur', '', '0628521624', NULL),
 (1, 'AC Caen', 'basketball', '0230313233', NULL),
 (2, 'AC Lisieux', 'basketball', '0231323334', NULL),
@@ -196,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `confirmation_token`, `confirmed_at`, `reset_token`, `reset_at`, `remember_token`, `locked_at`, `id_league`) VALUES
-(1, 'Benjamin', 'benjaminhaise@gmail.com', '$2y$10$FsOOgZgYDa.qZGAsLlUedeQt1L4lUGyLnOEti1p2zz5vTjhTYZZzK', NULL, '2019-02-02 00:00:00', NULL, NULL, 'FwTl8YxyZaBC5URO8XFmE6TCQnAb5NyoB6s5ZrqlYkwub3SsK77EwN5wlytsT3MNjC0Lhlq006fwcSgrAfuOFkwF7c9SIdCXAvQjhRuEBLjrYvhFzQgPPmGtLqwgRPA1PpD9Id1yIrmOiT0tLoBqFxRLUKeKVgtctKs8wSulACds6l0NNw6XlbpRMYXVBqyrOLNTKEL1NvZiS7hmslviN8qHpijRSjc2hGpGH8EqJIBoHVZBR7t8cVXjaKBAamB', NULL, 0),
+(1, 'Benjamin', 'benjaminhaise@gmail.com', '$2y$10$PsGGN3gnok0nHd5jrW2pUelsgOeASxq5LLcvV/3Yk6.M4PiQLUnM2', NULL, '2019-02-02 00:00:00', NULL, NULL, 'YhYkLACuevxhTKhOwVCAdZ6BLoEQ3ug1dvBdjzaTrIfiPxevvFtK58JrNomZqYxrmrBhQGRKpS9u6IIWg6whThLDFW4ssc4h9oUlCmcwgL6qrZw7G5wVPHjb8qNcusUSdR21PyZzLn7GsGDx4BWnwC4BuwGRzOr5wPhsSCaJ1JYg1VTdoPPIgw35jfAsB9ikix4koEpidvSBtBvl6E18neweXNcM5O3ftQaCgWvgeI94bWTPUH6D6psMGOHjV1G', NULL, 0),
 (2, 'User', 'user@m2n.fr', '$2y$10$/ArgX/XErXbaIwu2XuM6KOHS/LNcwgmz4IfEmO0hHIxXwSjCgHy8S', NULL, '2019-02-02 00:00:00', NULL, NULL, NULL, NULL, 1);
 COMMIT;
 

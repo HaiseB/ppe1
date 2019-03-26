@@ -12,23 +12,16 @@ render('header');
 </div>
 
 <div class="jumbotron container">
-    <h1>En construction</h1>
+    <h1>En construction / À venir :</h1>
     <ul>
+        <li>Ma journée / affichage journalié</li>
         <li>tri des salles selon critères</li>
         <li>Test si la procédure stockée est bien passée</li>
-        <li>affichage hebdomadaire</li>
-        <li>validator class et league</li>
-        <li>register.php & account.php</li>
-    </ul>
-</div>
-
-<div class="jumbotron container">
-    <h1>À venir :</h1>
-    <ul>
-        <li>changer de ligue dans account</li>
+        <li>validator sur tout les formulaires</li>
+        <hr>
+        <li>changer de ligue dans Mon compte</li>
+        <li>Ajout de la météo dans "Ma journé"</li>
         <li>Ajout de la possibilité de reserver depuis l'écran de salles de classe</li>
-        <li>Modification/ajout de ligues pour l'Admin</li>
-        <li>Page spécifique pour la création d'évènement</li>
         <li>bouton contacter Admin</li>
         <li>Themes personnalisées</li>
         <li>Messagerie interne</li>

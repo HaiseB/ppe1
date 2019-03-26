@@ -19,21 +19,25 @@ méthodologie de développement, justification des choix techniques, etc.) ;
 
 Il reste:
 
-tri des salles selon critère via clique dans la colonne en haut
-    <i class="far fa-arrow-alt-circle-up"></i>
-    <i class="far fa-arrow-alt-circle-down"></i>
-méthode avec case?
+add classroom
+modification de salle
 
-affichage calendrier selon ligue
+tri des salles selon critère
 
-affichage hebdomadaire
+reservation (procédure stockée)
 
-validator class et league
+affichange selon ligue
 
-methode pour afficher salle utilisée = cassée
 
-changer de ligue dans account
 
+
+
+
+
+
+
+
+affichage hebdo
 
 cahngement a rfaire suite a la fusion avec PPE:
 
@@ -41,14 +45,12 @@ creation evenement
 register.php
 account.php
 
-ajout(s):
+ajout:
 
-page différentes entre admin et user pour la création d'évent
+messagerie
 
-modification/ajout de league
 
-bouton contacter admin dans navbar
-
-messagerie interne?
-
-theme personnalisées
+e6
+bilan de compétences
+présentation entreprise sous forme de diapo
+compétences aquises
