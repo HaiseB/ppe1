@@ -3,12 +3,11 @@
     $pdo = get_pdo();
     $events = new calendar\Events($pdo);
     $today = new \Datetime;
-    $start = $today->format('Y-m-d 08:00:00');
-    $end = $today->format('Y-m-d 18:30:00');
+    
+    $start = $today->format('Y-m-d 00:00:01');
+    $end = $today->format('Y-m-d 23:59:59');
     $events = $events -> getEventsToday($start, $end);
     dd($events);
-    dd($events[0]['name']);
-    $req = $pdo->prepare("SELECT * FROM classrooms WHERE id = ?");
 ?>
 
 <div class="jumbotron container">
@@ -17,21 +16,23 @@
     <table class="table table-hover">
         <thead>
             <tr>
-            <th scope="col"></th>
+            <th scope="col">Horaire de début</th>
+            <th scope="col">Horaire de fin</th>
             <th scope="col">Salle</th>
             <th scope="col">Cours</th>
             <th scope="col">Commentaire</th>
             </tr>
         </thead>
         <tbody>
-            <?php for ($i = 1; $i <= 11; $i++): ?>
+            <?php foreach($events as $event): ?>
                 <tr>
-                    <th scope="row"><?= 7+$i; ?> h 00</th>
-                    <td><?php $req->execute(['$id_classroom']); $classroom = $req->fetch(); ?></td>
-                    <td><?= $events[0]['name'];?></td>
-                    <td><?= $events[0]['description'];?></td>
+                    <th scope="row"><?= $event['start']; ?></th>
+                    <th scope="row"><?= $event['end']; ?></th>
+                    <td><?= getClassroomNameFromEvent($events);?> </td>
+                    <td><?= $event['name'];?></td>
+                    <td><?= $event['description'];?></td>
                 </tr>
-            <?php endfor; ?>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </div>

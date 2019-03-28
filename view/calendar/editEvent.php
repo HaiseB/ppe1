@@ -21,8 +21,6 @@ $data=[
     'id_classroom' => $event->getId_classroom(),
 ];
 
-dd($data);
-
 $req = $pdo->prepare("SELECT * FROM classrooms WHERE id = ?");
 $req->execute([$data['id_classroom']]);
 $classroom = $req->fetch();

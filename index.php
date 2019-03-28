@@ -36,6 +36,7 @@ require 'model/functions.php';
         break;
 
         case "myDay":
+            include 'controller/myDay.php';
             pages('calendar/myDay');
         break;
 
