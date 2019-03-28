@@ -232,8 +232,7 @@ function computerized(array $classroom): bool{
 }
 
 /**
- * Retourne vrai si le booléen est vrai
- *
+ * Retourne vrai la checkbox est cochée
  * @param boolean $checkbox
  * @return boolean
  */
