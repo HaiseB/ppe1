@@ -12,11 +12,16 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <a class="navbar-brand" href="index.php?action=home">Accueil</a>
-            <div class="collapse navbar-collapse" id="navbarColor01">
+
+            <button id="showMenu" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor01" style="">
                 <ul class="navbar-nav mr-auto">
                     <?php if (isset($_SESSION['auth'])): ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?action=account">Mon compte</a>
+                            <a class="nav-link" href="index.php?action=account">Mon compte <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?action=myDay">Ma journée</a>

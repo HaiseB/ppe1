@@ -97,7 +97,7 @@ function logged_only(){
 function admin_only(){
     logged_only();
     if($_SESSION['auth']['id_league'] !=0){
-        header('location: index.php?action=login');
+        header('location: index.php?action=account');
         $_SESSION['flash']['danger'] = "Vous devez être administrateur pour pouvvoir acceder à cette page";
         exit();
     }
@@ -252,11 +252,20 @@ function isCheckedLocked_at(bool $checkbox): bool{
     }
 }
 
-function pages($pageName){
-    render('header');
-    render($pageName);
+function pages($pageName, $parameters =[]){
+    extract($parameters);
+    render('header',$parameters);
+    render($pageName,$parameters);
     render('footer');
 
+}
+
+function getClassroomNameFromEvent($event){
+    $pdo = get_pdo();
+    $req = $pdo->prepare("SELECT * FROM classrooms WHERE id = ?");
+    $req->execute([$event['id_classroom']]);
+    $classroom = $req->fetch();
+    return $classroom['name'];
 }
 
 ?>

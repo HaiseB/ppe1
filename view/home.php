@@ -11,16 +11,14 @@
     <ul>
         <i class="fas fa-arrow-alt-circle-up"></i>
         <i class="fas fa-arrow-alt-circle-down"></i>
-        <li>Ma journée / affichage journalié</li>
         <li>Tri des salles selon critères</li>
         <li>Test si la procédure stockée est bien passée</li>
         <hr>
         <li>Changer de ligue dans Mon compte</li>
         <li>Creer nouveau compte</li>
-        <li>Ajout de la météo dans "Ma journé"</li>
+        <li>Ajout de la météo dans "Ma journée"</li>
         <li>Ajout de la possibilité de reserver depuis l'écran de salles de classe</li>
-        <li>bouton contacter Admin</li>
-        <li>Themes personnalisées</li>
-        <li>Messagerie interne</li>
+        <li>Themes personnalisable</li>
+        <li>Messagerie interne / contacter un admin</li>
     </ul>
 </div>

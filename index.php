@@ -12,15 +12,15 @@ require 'model/functions.php';
     switch($_GET['action']) {
 
         case "home":
-            pages('home');
+            include 'controller/home.php';
         break;
 
         case "login":
-            pages('space/login');
+            include 'controller/login.php';
         break;
 
         case "forget":
-            pages('space/forget');
+            include 'controller/forget.php';
         break;
 
         case "404":
@@ -28,40 +28,48 @@ require 'model/functions.php';
         break;
 
         case "logout":
-            pages('space/logout');
+            include 'model/space/Space.php';
+            logout();
         break;
 
         case "account":
-            pages('space/account');
+            logged_only();
+            include 'controller/account.php';
         break;
 
         case "myDay":
+            logged_only();
             include 'controller/myDay.php';
-            pages('calendar/myDay');
         break;
 
         case "calendar":
+            logged_only();
             pages('calendar/calendar');
         break;
 
         case "addEvent":
-            pages('calendar/addEvent');
+            logged_only();
+            include 'controller/addEvent.php';
         break;
 
         case "editEvent":
-            pages('calendar/editEvent');
+            logged_only();
+            include 'controller/editEvent.php';
         break;
 
         case "classroom":
+            logged_only();
             pages('classroom/classroom',['title' => 'Liste des salles']);
-        break;
+        break; 
 
         case "editClassroom":
+            admin_only();
             pages('classroom/editClassroom');
         break;
 
         case "addClassroom":
-            pages('classroom/addClassroom');
+            admin_only();
+            include 'controller/addClassroom.php';
         break;
 
         case "league":
