@@ -39,6 +39,23 @@ class Events{
         return $result;
     }
 
+    public function deleteEvent(){
+        $pdo = get_pdo();
+        $req = $pdo->prepare("SELECT * FROM events WHERE id=?");
+        $req->execute([$_GET['id']]);
+        $event = $req->fetch();
+        if (empty($event)){
+            $_SESSION['flash']['danger'] = "L'évènement que vous cherchez à supprimer n'existe pas";
+            header('location: index.php?action=calendar');
+            exit();
+        } else {
+            $pdo->prepare('DELETE FROM events WHERE id = ?')->execute([$_GET['id']]);
+            $_SESSION['flash']['success'] = "L'évènement à bien été supprimé";
+            header('location: index.php?action=calendar');
+            exit();
+        }
+    }
+
     /**
      * Recupère les évènements commencant entre 2 dates indexés par jour
      *

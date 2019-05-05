@@ -1,11 +1,3 @@
-<?php
-logged_only();
-$pdo = get_pdo();
-
-$req = $pdo->query("SELECT * FROM classrooms");
-$classrooms = $req->fetchall();
-?>
-
 <div class="d-flex flex-row align-items-center justify-content-between mx-sm-3">
     <h1>Salles de classe</h1>
 </div>

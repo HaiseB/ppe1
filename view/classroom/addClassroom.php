@@ -12,5 +12,4 @@
             <button class="btn btn-primary">Créer la salle</button>
         </div>
     </form>
-
 </div>

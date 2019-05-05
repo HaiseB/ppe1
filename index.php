@@ -44,7 +44,7 @@ require 'model/functions.php';
 
         case "calendar":
             logged_only();
-            pages('calendar/calendar');
+            include 'controller/calendar.php';
         break;
 
         case "addEvent":
@@ -57,14 +57,20 @@ require 'model/functions.php';
             include 'controller/editEvent.php';
         break;
 
+        case "deleteEvent":
+            logged_only();
+            require 'model/calendar/Events.php';
+            \calendar\Events::deleteEvent();
+        break;
+            
         case "classroom":
             logged_only();
-            pages('classroom/classroom',['title' => 'Liste des salles']);
+            include 'controller/classroom.php';
         break; 
 
         case "editClassroom":
             admin_only();
-            pages('classroom/editClassroom');
+            include 'controller/editClassroom.php';
         break;
 
         case "addClassroom":
@@ -72,29 +78,31 @@ require 'model/functions.php';
             include 'controller/addClassroom.php';
         break;
 
+        case "deleteClassroom":
+            admin_only();
+            require 'model/classroom/Classrooms.php';
+            deleteClassroom();
+        break;
+            
         case "league":
             logged_only();
-            require 'model/league/Leagues.php';
-            $leagues=getLeagues();
-            render('header');
-            include 'view/league/league.php';
-            render('footer');
+            include 'controller/league.php';
         break;
 
         case "editLeague":
             admin_only();
-            pages('league/editLeague');
+            include 'controller/editleague.php';
         break;
 
         case "addLeague":
             admin_only();
-            pages('league/addLeague');
+            include 'controller/addLeague.php';
         break;
 
         case "deleteLeague":
             admin_only();
             include 'model/league/leagues.php';
-            deleteLeague($_GET['id']);
+            deleteLeague();
         break;
     }
 

@@ -45,4 +45,4 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     }
 }
 
-pages('calendar/addEvent',['title' => 'M2N - Mot de passe oublié', 'data' => $data, 'errors' => $errors]);
+pages('calendar/addEvent',['title' => 'M2N - Nouvel évènement', 'data' => $data, 'errors' => $errors]);
