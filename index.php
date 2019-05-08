@@ -62,11 +62,11 @@ require 'model/functions.php';
             require 'model/calendar/Events.php';
             \calendar\Events::deleteEvent();
         break;
-            
+
         case "classroom":
             logged_only();
             include 'controller/classroom.php';
-        break; 
+        break;
 
         case "editClassroom":
             admin_only();
