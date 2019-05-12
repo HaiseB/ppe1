@@ -2,6 +2,9 @@
 
 namespace calendar;
 
+/**
+ * Class month nécessaire au fonctionnement de l'agenda
+ */
 class Month{
     public $days=['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'];
 

@@ -10,4 +10,4 @@
     </form>
 </div>
 
-<a href="index.php?action=deleteEvent&id=<?= $_GET['id'];?>" class="deleteButton"><i class="fas fa-dumpster"></i></a>
+<a href="index.php?action=deleteEvent&id=<?= $_GET['id'];?>" class="deleteButton"><i class="fas fa-trash-alt"></i></a>

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * recupère la liste de toutes les ligues excepté la "ligue" administration
+ *
+ * @return array
+ */
 function getLeagues() : array{
     $pdo = get_pdo();
     $req = $pdo->query("SELECT * FROM leagues WHERE id > 0 ORDER BY name");
@@ -7,6 +12,11 @@ function getLeagues() : array{
     return $leagues;
 }
 
+/**
+ * Supprimme une ligue de sport en fonction de l'id récupéré en GEt
+ *
+ * @return array
+ */
 function deleteLeague() : array{
     $pdo = get_pdo();
     $req = $pdo->prepare("SELECT * FROM leagues WHERE id=?");

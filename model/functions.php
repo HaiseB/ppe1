@@ -164,7 +164,7 @@ function is_logged(): bool {
 }
 
 /**
- * Undocumented function
+ * retourne vrai si la classe passée en parametre est occupée en ce moment
  *
  * @param array $classroom
  * @return boolean
@@ -182,7 +182,7 @@ function booked_now(array $classroom): bool{
 }
 
 /**
- * Undocumented function
+ * retourne vrai si la classe passée en parametre renseignée comme vérouillée dans la BDD
  *
  * @param array $classroom
  * @return boolean
@@ -200,9 +200,9 @@ function locked(array $classroom): bool{
 }
 
 /**
- * Undocumented function
+ * retourne vrai si la ligue passée en parametre renseignée comme vérouillée dans la BDD
  *
- * @param array $classroom
+ * @param array $league
  * @return boolean
  */
 function leagueLocked(array $league): bool{
@@ -232,7 +232,7 @@ function computerized(array $classroom): bool{
 }
 
 /**
- * Retourne vrai la checkbox est cochée
+ * Retourne vrai la checkbox est informatisée est cochée
  * @param boolean $checkbox
  * @return boolean
  */
@@ -244,28 +244,45 @@ function isCheckedComputerized(bool $checkbox): bool{
     }
 }
 
+/**
+ * utilise la fonction render pour afficher la page entièrement (header puis body et ensuite footer)
+ *
+ * @param string $pageName
+ * @param array $parameters
+ * @return void
+ */
+function pages(string $pageName,array $parameters =[]){
+    extract($parameters);
+    render('header',$parameters);
+    render($pageName,$parameters);
+    render('footer');
+}
+
+/**
+ * renvoi le nom de la classe concernée par l'évènement passé en parametres
+ *
+ * @param array $event
+ * @return string
+ */
+function getClassroomNameFromEvent(array $event): string{
+    $pdo = get_pdo();
+    $req = $pdo->prepare("SELECT * FROM classrooms WHERE id = ?");
+    $req->execute([$event['id_classroom']]);
+    $classroom = $req->fetch();
+    return $classroom['name'];
+}
+
+/**
+ * Retourne vrai la checkbox pour le vérouillage est cochée
+ * @param boolean $checkbox
+ * @return boolean
+ */
 function isCheckedLocked_at(bool $checkbox): bool{
     if (empty($checkbox)) {
         return false;
     } else {
         return true;
     }
-}
-
-function pages($pageName, $parameters =[]){
-    extract($parameters);
-    render('header',$parameters);
-    render($pageName,$parameters);
-    render('footer');
-
-}
-
-function getClassroomNameFromEvent($event){
-    $pdo = get_pdo();
-    $req = $pdo->prepare("SELECT * FROM classrooms WHERE id = ?");
-    $req->execute([$event['id_classroom']]);
-    $classroom = $req->fetch();
-    return $classroom['name'];
 }
 
 ?>

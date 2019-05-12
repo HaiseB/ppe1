@@ -1,5 +1,11 @@
 <?php
 
+
+/**
+ * fonction de déconnexion
+ *
+ * @return void
+ */
 function logout(){
     setcookie('remember', NULL, -1);
     unset($_SESSION['auth']);

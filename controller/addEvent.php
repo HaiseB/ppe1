@@ -4,13 +4,13 @@ require 'model/calendar/Events.php';
 logged_only();
 $pdo = get_pdo();
 
-$data=[
+$data = [
     'date' => $_GET['date'] ?? date('Y-m-d'),
     'start' => $_GET['date'] ?? date('H:i'),
     'end' => $_GET['date'] ?? date('H:i')
 ];
 
-$errors=[];
+$errors = [];
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $data = $_POST;
     if ($data['start'] >= $data['end']){

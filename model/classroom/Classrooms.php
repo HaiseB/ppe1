@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Supprimme une salle de classe en fonction de l'id récupéré en GEt
+ *
+ * @return array
+ */
 function deleteClassroom() : array{
     $pdo = get_pdo();
     $req = $pdo->prepare("SELECT * FROM classrooms WHERE id=?");

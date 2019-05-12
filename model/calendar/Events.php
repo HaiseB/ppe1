@@ -4,6 +4,9 @@ namespace calendar;
 
 require 'model\calendar\Event.php';
 
+/**
+ * classe qui gère les évènements
+ */
 class Events{
 
     private $pdo;
@@ -31,7 +34,13 @@ class Events{
         return $result;
     }
 
-
+    /**
+     *récupère les évènements entre deux dates passées en paramètres
+     *
+     * @param [type] $start
+     * @param [type] $end
+     * @return array
+     */
     public function getEventsToday ($start,$end): array{
         $statement = $this->pdo->prepare("SELECT * FROM events WHERE start BETWEEN '{$start}' AND '{$end}' AND id_league = ? ORDER BY start ASC");
         $statement->execute([$_SESSION['auth']['id_league']]);
@@ -39,6 +48,11 @@ class Events{
         return $result;
     }
 
+    /**
+     * Supprimme un évènement dont l'id est récupéré en GET
+     *
+     * @return void
+     */
     public function deleteEvent(){
         $pdo = get_pdo();
         $req = $pdo->prepare("SELECT * FROM events WHERE id=?");

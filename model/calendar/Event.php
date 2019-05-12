@@ -2,6 +2,9 @@
 
 namespace Calendar;
 
+/**
+ * Constructeur de la classe Event
+ */
 class Event{
 
     private $id;

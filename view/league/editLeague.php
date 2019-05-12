@@ -13,5 +13,5 @@
         </div>
     </form>
 
-    <a href="index.php?action=deleteLeague&id=<?= $_GET['id'];?>" class="deleteButton"><i class="fas fa-dumpster"></i></a>
+    <a href="index.php?action=deleteLeague&id=<?= $_GET['id'];?>" class="deleteButton"><i class="fas fa-trash-alt"></i>></a>
 </div>
